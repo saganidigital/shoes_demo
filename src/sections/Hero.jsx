@@ -1,65 +1,41 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { ArrowRight, Play, Pause, Truck, ShieldCheck, Feather, Sparkles } from 'lucide-react';
+import { ArrowRight, Truck, ShieldCheck, Feather, Sparkles } from 'lucide-react';
 import { Button } from '../components/Button';
 
 export function Hero({ onOpenOrder }) {
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
 
-  // Check for prefers-reduced-motion & low-bandwidth conditions
+  // Ensure continuous looping playback seamlessly without interruption
   useEffect(() => {
-    // 1. Accessibility: prefers-reduced-motion media query
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const handleMotionChange = (e) => {
-      setIsReducedMotion(e.matches);
-      if (e.matches) {
-        setIsPlaying(false);
-        if (videoRef.current) videoRef.current.pause();
+    const playVideo = () => {
+      if (videoRef.current) {
+        videoRef.current.play().catch((err) => {
+          console.warn('Autoplay check:', err);
+        });
       }
     };
 
-    if (motionQuery.matches) {
-      setIsReducedMotion(true);
-      setIsPlaying(false);
-    }
-    motionQuery.addEventListener('change', handleMotionChange);
+    playVideo();
 
-    // 2. Data Saver check
-    const isSaveData = navigator.connection?.saveData === true;
-    if (isSaveData) {
-      setIsPlaying(false);
-    }
-
-    return () => motionQuery.removeEventListener('change', handleMotionChange);
-  }, []);
-
-  // Safe playback trigger handling browser autoplay & battery-saver constraints
-  useEffect(() => {
-    if (!videoRef.current) return;
-
-    if (isPlaying && !isReducedMotion) {
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn('Autoplay inhibited or paused by battery/system preference:', err);
-          setIsPlaying(false);
-        });
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        playVideo();
       }
-    } else {
-      videoRef.current.pause();
-    }
-  }, [isPlaying, isReducedMotion]);
+    };
 
-  // Handle play/pause user toggle
-  const togglePlayPause = useCallback(() => {
-    setIsPlaying((prev) => !prev);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   // Video loaded data handler for smooth fade-in
   const handleVideoLoaded = useCallback(() => {
     setIsVideoLoaded(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
   }, []);
 
   const corePillars = [
@@ -91,7 +67,7 @@ export function Hero({ onOpenOrder }) {
       className="relative min-h-[100dvh] w-full flex flex-col justify-between overflow-hidden bg-[#0d0c10]"
     >
       {/* ========================================================================= */}
-      {/* 1. RESPONSIVE BACKGROUND VIDEO: SHRINKS ON MOBILE, EXPANDS ON DESKTOP      */}
+      {/* 1. SEAMLESS LOOPING BACKGROUND VIDEO (NO PAUSE, CONTINUOUS LOOP)          */}
       {/* ========================================================================= */}
       <div 
         className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0 flex items-center justify-center"
@@ -106,18 +82,24 @@ export function Hero({ onOpenOrder }) {
           }`}
         />
 
-        {/* Video: Scaled proportionally on mobile, expanded fully on desktop/ultrawide */}
+        {/* Video: Endless loop without pause/play controls or progress bar */}
         <video
           ref={videoRef}
           src="/hero-video.mp4"
           poster="/poster.jpeg"
-          autoPlay={!isReducedMotion}
+          autoPlay
           loop
           muted
           playsInline
           preload="auto"
           onLoadedData={handleVideoLoaded}
           onCanPlayThrough={handleVideoLoaded}
+          onEnded={() => {
+            if (videoRef.current) {
+              videoRef.current.currentTime = 0;
+              videoRef.current.play().catch(() => {});
+            }
+          }}
           disablePictureInPicture
           disableRemotePlayback
           controls={false}
@@ -148,7 +130,7 @@ export function Hero({ onOpenOrder }) {
           </span>
         </div>
 
-        {/* Main Headline: Scales gracefully from 32px on small phones to 130px on 2K/4K */}
+        {/* Main Headline */}
         <div className="space-y-3 sm:space-y-4 max-w-4xl 2xl:max-w-5xl mx-auto">
           <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-9xl font-black uppercase tracking-tight text-white font-display leading-[0.96] drop-shadow-2xl">
             PRECISION IN MOTION
@@ -159,7 +141,7 @@ export function Hero({ onOpenOrder }) {
           </p>
         </div>
 
-        {/* Conversion Action Buttons: Stack on mobile, inline on tablet+ */}
+        {/* Conversion Action Buttons */}
         <div className="flex flex-col xs:flex-row items-center justify-center gap-3 sm:gap-4 pt-6 sm:pt-8 w-full max-w-xs xs:max-w-md">
           <Button
             variant="primary"
@@ -211,31 +193,6 @@ export function Hero({ onOpenOrder }) {
             );
           })}
         </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 5. ACCESSIBLE PLAY / PAUSE MOTION TOGGLE (POSITIONED SAFELY ON ALL SCREENS) */}
-      {/* ========================================================================= */}
-      <div className="absolute bottom-20 lg:bottom-6 right-3 sm:right-6 z-20">
-        <button
-          type="button"
-          onClick={togglePlayPause}
-          aria-label={isPlaying ? "Pause background video animation" : "Play background video animation"}
-          title={isPlaying ? "Pause background animation" : "Play background animation"}
-          className="flex items-center space-x-1.5 sm:space-x-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full backdrop-blur-md bg-black/60 hover:bg-black/80 border border-white/15 hover:border-white/30 text-white/80 hover:text-white text-xs transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-[#f8c26c]/50"
-        >
-          {isPlaying ? (
-            <>
-              <Pause className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f8c26c]" />
-              <span className="hidden sm:inline text-[10px] uppercase font-mono tracking-wider">Pause</span>
-            </>
-          ) : (
-            <>
-              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f8c26c]" />
-              <span className="hidden sm:inline text-[10px] uppercase font-mono tracking-wider">Play</span>
-            </>
-          )}
-        </button>
       </div>
 
     </section>
