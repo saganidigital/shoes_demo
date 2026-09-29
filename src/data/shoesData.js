@@ -16,7 +16,6 @@ export const NAV_LINKS = [
   { name: "The Poster Cut", href: "#special-edition" },
   { name: "Specifications", href: "#specs" },
   { name: "Reviews", href: "#reviews" },
-  { name: "Order Now", href: "#order-now" },
 ];
 
 export const CORE_FEATURES = [
