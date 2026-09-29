@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+
+  --color-dark-900: #0f0e12;
+  --color-dark-800: #141317;
+  --color-dark-700: #1a1820;
+  --color-dark-600: #23202b;
+  --color-dark-500: #2f2b3a;
+
+  --color-bronze-dark: #3a2219;
+  --color-bronze: #543122;
+  --color-bronze-light: #7c4b32;
+
+  --color-amber-gold: #c88a36;
+  --color-amber-light: #e0a34b;
+  --color-amber-glow: #f8c26c;
+
+  --color-cream-50: #fbf9f5;
+  --color-cream-100: #f4efe7;
+  --color-cream-200: #ede5da;
+  --color-cream-400: #b5ada2;
+}
+
+/* Custom styles and smooth animations */
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background-color: #121115;
+    color: #ede5da;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+.font-display {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-mono {
+  font-family: 'Space Grotesk', monospace;
+}
+
+/* Glassmorphism & Bronze Glow utilities */
+.glass-panel {
+  background: rgba(26, 24, 32, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 138, 54, 0.15);
+}
+
+.glass-panel-subtle {
+  background: rgba(20, 19, 23, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f8c26c 0%, #e0a34b 45%, #c88a36 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bronze-gradient-bg {
+  background: linear-gradient(135deg, #482a20 0%, #7c4b32 50%, #c88a36 100%);
+}
+
+.poster-badge-gradient {
+  background: linear-gradient(135deg, #3d231a 0%, #201e27 100%);
+  border: 1px solid rgba(200, 138, 54, 0.4);
+}
+
+.glow-amber {
+  box-shadow: 0 0 35px -5px rgba(200, 138, 54, 0.35);
+}
+
+.glow-amber-sm {
+  box-shadow: 0 0 18px -3px rgba(200, 138, 54, 0.25);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121115;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b2733;
+  border-radius: 9999px;
+  border: 2px solid #121115;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c88a36;
+}
