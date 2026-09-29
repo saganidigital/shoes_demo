@@ -20,8 +20,8 @@ export function Navbar({ onOpenOrder, cartCount = 1 }) {
       </div>
 
       {/* Main navigation container */}
-      <div className={`px-4 sm:px-8 max-w-7xl mx-auto transition-all duration-300 ${
-        isScrolled ? 'py-2.5' : 'py-4'
+      <div className={`px-3 sm:px-8 max-w-7xl 2xl:max-w-[1500px] mx-auto transition-all duration-300 ${
+        isScrolled ? 'py-2 sm:py-2.5' : 'py-3 sm:py-4'
       }`}>
         <nav className={`flex items-center justify-between px-5 py-3 rounded-full transition-all duration-300 ${
           isScrolled 

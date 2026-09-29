@@ -34,15 +34,15 @@ export function OrderSection({ onOpenOrder }) {
   };
 
   return (
-    <section id="order-now" className="py-24 relative bg-[#121115] overflow-hidden">
+    <section id="order-now" className="py-16 sm:py-24 relative bg-[#121115] overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-tr from-[#c88a36]/15 via-[#4a2b1f]/20 to-transparent rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl 2xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main CTA Card Frame */}
-        <div className="rounded-[2.5rem] bg-gradient-to-b from-[#1c1924] to-[#14121a] border-2 border-[#c88a36]/40 p-8 sm:p-12 lg:p-16 shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(200,138,54,0.2)]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="rounded-2xl sm:rounded-[2.5rem] bg-gradient-to-b from-[#1c1924] to-[#14121a] border-2 border-[#c88a36]/40 p-5 sm:p-10 lg:p-16 shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(200,138,54,0.2)]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-8">

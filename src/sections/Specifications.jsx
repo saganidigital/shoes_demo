@@ -25,28 +25,28 @@ export function Specifications() {
   ];
 
   return (
-    <section id="specs" className="py-24 relative bg-[#121115] overflow-hidden">
+    <section id="specs" className="py-16 sm:py-24 relative bg-[#121115] overflow-hidden">
       {/* Background accents */}
       <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-[#c88a36]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl 2xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-12 sm:mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#201d29] border border-[#c88a36]/30 text-xs font-bold uppercase tracking-widest text-[#f8c26c]">
             <Cpu className="w-3.5 h-3.5" />
             <span>LAB GRADE PERFORMANCE</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
+          <h2 className="text-2xl xs:text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
             Anatomy of the Cushioned Sole
           </h2>
-          <p className="text-sm sm:text-base text-[#b5ada2]">
+          <p className="text-xs sm:text-base text-[#b5ada2]">
             Discover why our signature high-top doesn't just look legendary — it delivers all-day cloud-like comfort that outclasses conventional cup soles.
           </p>
         </div>
 
         {/* Anatomy Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20">
           {anatomyPillars.map((item, idx) => (
             <div
               key={idx}

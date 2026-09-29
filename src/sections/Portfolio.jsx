@@ -19,34 +19,34 @@ export function Portfolio({ onSelectProduct }) {
     : PRODUCTS.filter(p => p.tags.includes(activeFilter) || p.badge.includes(activeFilter));
 
   return (
-    <section id="collection" className="py-24 relative bg-[#121115] overflow-hidden">
+    <section id="collection" className="py-16 sm:py-24 relative bg-[#121115] overflow-hidden">
       {/* Background accents */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#c88a36]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl 2xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="space-y-3 max-w-2xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
+          <div className="space-y-2.5 sm:space-y-3 max-w-2xl">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#201d29] border border-[#c88a36]/30 text-xs font-bold uppercase tracking-widest text-[#f8c26c]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>THE 2026 ARCHIVE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
+            <h2 className="text-2xl xs:text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
               Featured Retro Court Lineup
             </h2>
-            <p className="text-sm sm:text-base text-[#b5ada2]">
+            <p className="text-xs sm:text-base text-[#b5ada2]">
               Precision stitched high-top sneakers rendered with the signature bronze, mocha, and chalk silhouette. All eligible for the 50% launch reduction.
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2">
+          {/* Filter Pills: Smooth swipe on mobile without wrapping clumsily */}
+          <div className="flex items-center overflow-x-auto no-scrollbar py-1 gap-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
             {filters.map(filter => (
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all ${
+                className={`whitespace-nowrap px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all shrink-0 ${
                   activeFilter === filter.value
                     ? 'bg-[#c88a36] text-black shadow-[0_0_15px_rgba(200,138,54,0.4)]'
                     : 'bg-[#1b1923] text-white/70 border border-white/10 hover:border-white/20'

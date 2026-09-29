@@ -11,34 +11,34 @@ const iconMap = {
 
 export function Features() {
   return (
-    <section id="craftsmanship" className="py-24 relative bg-[#0f0e12] overflow-hidden border-t border-b border-white/5">
+    <section id="craftsmanship" className="py-16 sm:py-24 relative bg-[#0f0e12] overflow-hidden border-t border-b border-white/5">
       {/* Background glow effects */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#c88a36]/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 right-10 w-96 h-96 bg-[#4a2b1f]/15 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl 2xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-12 sm:mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#201d29] border border-[#c88a36]/30 text-xs font-bold uppercase tracking-widest text-[#f8c26c]">
             <span>ENGINEERED PERFECTION</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
+          <h2 className="text-2xl xs:text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
             Built Different. Crafted Without Compromise.
           </h2>
-          <p className="text-sm sm:text-base text-[#b5ada2] leading-relaxed">
+          <p className="text-xs sm:text-base text-[#b5ada2] leading-relaxed">
             Every contour of the SHÖSE architecture reflects months of biomechanical testing and artisanal leatherwork. Directly honoring the four promises of our launch poster.
           </p>
         </div>
 
         {/* 4 Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 2xl:gap-8">
           {CORE_FEATURES.map((feature, idx) => {
             const IconComponent = iconMap[feature.icon] || Sparkles;
             return (
               <div
                 key={feature.id}
-                className="group relative p-8 rounded-3xl bg-[#17151e] border border-white/10 hover:border-[#c88a36]/50 transition-all duration-300 hover:-translate-y-1.5 shadow-lg hover:shadow-[0_15px_30px_rgba(200,138,54,0.15)] flex flex-col justify-between"
+                className="group relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#17151e] border border-white/10 hover:border-[#c88a36]/50 transition-all duration-300 hover:-translate-y-1.5 shadow-lg hover:shadow-[0_15px_30px_rgba(200,138,54,0.15)] flex flex-col justify-between"
               >
                 {/* Subtle top indicator line */}
                 <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-[#c88a36]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

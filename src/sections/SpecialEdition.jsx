@@ -8,32 +8,32 @@ export function SpecialEdition({ onOpenOrder }) {
   const heroShoe = PRODUCTS[0];
 
   return (
-    <section id="special-edition" className="py-24 relative bg-[#0f0e12] overflow-hidden border-t border-b border-white/5">
+    <section id="special-edition" className="py-16 sm:py-24 relative bg-[#0f0e12] overflow-hidden border-t border-b border-white/5">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#c88a36]/15 via-[#3d231a]/25 to-transparent rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl 2xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Banner Pill */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#201d29] border border-[#c88a36]/40 text-xs font-bold uppercase tracking-widest text-[#f8c26c] shadow-[0_0_15px_rgba(200,138,54,0.2)]">
+        <div className="flex justify-center mb-4 sm:mb-6">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#201d29] border border-[#c88a36]/40 text-xs font-bold uppercase tracking-widest text-[#f8c26c] shadow-[0_0_15px_rgba(200,138,54,0.2)]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>ORIGINAL POSTER SHOWCASE</span>
           </div>
         </div>
 
         {/* Title */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-display tracking-tight uppercase">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-12 sm:mb-16">
+          <h2 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black text-white font-display tracking-tight uppercase">
             SPECIAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f8c26c] via-[#c88a36] to-[#8d541a]">SHÖSE</span> EDITION
           </h2>
-          <p className="text-sm sm:text-base text-[#b5ada2]">
+          <p className="text-xs sm:text-base text-[#b5ada2]">
             Derived directly from the iconic billboard campaign. Engineered with hand-finished leather, contrasting chalk-white collars, and the iconic cushioned sole.
           </p>
         </div>
 
         {/* Split Grid: Poster Artwork on Left, Interactive Specs & Ordering on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left: Poster Artwork Frame with realistic shadow & floating discount badge */}
           <div className="lg:col-span-6 relative flex justify-center">
